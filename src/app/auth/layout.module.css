@@ -1,0 +1,13 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.appSpace {
+	display: flex;
+	height: calc(100vh - var(--heigth-top-bar));
+	width: 100vw;
+	overflow-y: scroll;
+	background-color: var(--color-white);
+	padding: 5px;
+}

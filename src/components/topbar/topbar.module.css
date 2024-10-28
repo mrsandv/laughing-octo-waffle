@@ -1,0 +1,20 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+	height: 80px;
+	justify-content: space-between;
+	background-color: var(--color-dark);
+	padding: 0 60px;
+}
+
+.logo {
+	height: 50px;
+}
+
+.closeSession {
+	font-size: 30px;
+	color: var(--color-accent);
+}
+.closeSession:hover {
+	cursor: pointer;
+}

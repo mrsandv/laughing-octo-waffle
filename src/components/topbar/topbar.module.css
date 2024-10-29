@@ -12,9 +12,35 @@
 }
 
 .closeSession {
-	font-size: 30px;
+	font-size: 24px;
+	color: var(--color-dark);
+	/* background-color: var(--color-accent); */
+	border-radius: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	/* border: 2px solid gray; */
+	padding: 5px 10px;
+	/* width: 250px; */
 	color: var(--color-accent);
 }
+
+.closeSession svg {
+	margin: 0 10px;
+}
+
 .closeSession:hover {
 	cursor: pointer;
+}
+
+@media (max-width: 1025px) {
+	.wrapper {
+		padding: 0 20px;
+	}
+	.closeSession svg {
+		margin: 0;
+	}
+	.closeSession span {
+		display: none;
+	}
 }

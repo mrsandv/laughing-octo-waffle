@@ -1,0 +1,13 @@
+FROM node:alpine
+
+ENV PORT 3000
+
+WORKDIR /parrot-ch
+
+COPY . .
+
+RUN npm i
+
+EXPOSE 3000
+
+ENTRYPOINT ["npm","run", "dev"]

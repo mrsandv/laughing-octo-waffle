@@ -17,7 +17,7 @@ export default function Card({ item, fetchProducts }: { item: TProduct, fetchPro
   }
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${item.availability === 'AVAILABLE' ? "" : styles.disabled}`}>
       <img src={item.imageUrl} alt={item.name} className={styles.picture} />
       <div className={styles.infoWrapp}>
         <p className={styles.title}>{item.name}</p>

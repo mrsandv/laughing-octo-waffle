@@ -1,0 +1,20 @@
+services:
+  parrot-ch:
+    container_name: parrot-ch
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - '.:/parrot-ch'
+      - '/parrot-ch/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=test
+    stdin_open: true
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

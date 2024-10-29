@@ -3,7 +3,7 @@ import styles from './topbar.module.css';
 import { FaArrowRightFromBracket } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
 
-export default function TopBar() {
+const TopBar = () => {
 
 	const closeSession = () => {
 		document.cookie =
@@ -12,7 +12,7 @@ export default function TopBar() {
 		toast.error('Se ha cerrado la sesión, seras dirigido al login');
 		setTimeout(() => {
 			window.location.href = '/login';
-		}, 5000);
+		}, 4000);
 	};
 
 	return (
@@ -25,8 +25,10 @@ export default function TopBar() {
 				/>
 			</Link>
 			<div className={styles.closeSession} onClick={closeSession}>
-				<FaArrowRightFromBracket />
+				<FaArrowRightFromBracket /><span>Logout</span>
 			</div>
 		</div>
 	);
 }
+
+export default TopBar;

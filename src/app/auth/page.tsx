@@ -1,57 +1,57 @@
-'use client'
+'use client';
 import { useEffect, useState } from 'react';
-import { useStore } from 'hooks/store';
-import styles from './auth.module.css'
+import { useStore } from 'store';
+import styles from './auth.module.css';
 import type { TProduct } from 'types';
-import { Card } from 'components';
-import { getProducts } from 'app/api/'
+import { Card, CategoryTabs, StoreHeader } from 'components';
+import { getProducts, getStores } from 'app/api/';
+import { FaAnglesUp } from 'react-icons/fa6';
 
 export default function Auth() {
-  const { stores, fetchStores, products, setProducts } = useStore();
+  const { stores, setStores,
+    //  fetchStores, 
+    products, setProducts } = useStore();
   const [active, setActive] = useState('Todos');
-
   const fetchProducts = async (storeId: string) => {
-    setProducts(await getProducts(storeId))
+    setProducts(await getProducts(storeId));
+  };
+
+  const fetchStores = async () => {
+    try {
+      const storesData = await getStores();
+      setStores(storesData);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   useEffect(() => {
     fetchStores()
-  }, [])
+  }, []);
 
-  const categories: { [categoryName: string]: TProduct[] } = products.reduce((grouped: { [categoryName: string]: TProduct[] }, product: TProduct) => {
-    const categoryName: string = product.category.name;
-    grouped[categoryName] = grouped[categoryName] || [];
-    grouped[categoryName].push(product);
-    grouped.Todos = grouped.Todos || [];
-    grouped.Todos.push(product);
-    return grouped;
-  }, {});
-
-  const sortCats = Object.keys(categories).sort((a, b) => categories[b].length - categories[a].length)
+  const categories: { [categoryName: string]: TProduct[] } = products.reduce(
+    (grouped: { [categoryName: string]: TProduct[] }, product: TProduct) => {
+      const categoryName: string = product.category.name;
+      grouped[categoryName] = grouped[categoryName] || [];
+      grouped[categoryName].push(product);
+      grouped.Todos = grouped.Todos || [];
+      grouped.Todos.push(product);
+      return grouped;
+    },
+    {}
+  );
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.header}>
-        {
-          stores.map((item: any) => <p key={item.uuid} className={styles.storeBar} onClick={() => {
-            fetchProducts(item.uuid)
-          }}>{item.name}</p>)
-        }
-      </div>
+      <StoreHeader stores={stores} fetchProducts={fetchProducts} />
       <div className={styles.menu}>
-        <div className={styles.tabs}>
-          <p className={styles.title}>Categorias</p>
-          {
-            sortCats.map((key) => <div className={`${styles.tab} ${active === key ? styles.active : ''}`} onClick={() => setActive(key)} key={key}>{key} <span className={`${styles.counter} ${active === key ? styles.activeC : ''}`}>{categories[key].length}</span></div>)
-          }
-        </div>
+        <CategoryTabs active={active} categories={categories} setActive={setActive} />
         <div className={styles.cards}>
-          {
-            categories[active].map(item => < Card fetchProducts={() => fetchProducts(stores[0].uuid)} key={item.uuid} item={item} />)
-          }
+          {products.length > 0 ? categories[active].map((item) => (
+            <Card fetchProducts={() => fetchProducts(stores[0].uuid)} key={item.uuid} item={item} />
+          )) : <p className={styles.advice}> <FaAnglesUp /> Da click en una tienda para cargar los productos </p>}
         </div>
       </div>
     </div>
-  )
+  );
 }
-

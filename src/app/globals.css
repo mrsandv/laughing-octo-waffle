@@ -6,7 +6,7 @@
 	--color-disabled: #3f3f46;
 	--color-bg: #ffe5de;
 	--color-dark: #171717;
-	--color-accent-50: #f99c9f;
+	--color-accent-50: #eeeeee;
 }
 
 html {
@@ -29,10 +29,6 @@ body {
 	padding: 0;
 }
 
-* {
-	/* outline: red dashed 1px; */
-}
-
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);
@@ -53,4 +49,8 @@ body {
 
 .loaderLabel {
 	margin: 0 10px;
+}
+
+* {
+	/* outline: 1px dashed pink; */
 }

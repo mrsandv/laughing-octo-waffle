@@ -1,5 +1,5 @@
 import { changeProductStatus } from 'app/api';
-import Switch from 'components/switch';
+import { Switch } from 'components/';
 import { toast } from 'react-toastify';
 import type { TProduct } from 'types';
 import styles from './card.module.css';

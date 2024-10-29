@@ -14,8 +14,8 @@ export const useStore = create<IStore>()(
 		(set) => ({
 			stores: [],
 			products: [],
-			setStores: (stores) => set((state: any) => ({ ...state, stores: stores })),
-			setProducts: (products) => set((state: any) => ({ ...state, products: products })),
+			setStores: (stores) => set((state) => ({ ...state, stores: stores })),
+			setProducts: (products) => set((state) => ({ ...state, products: products })),
 		}),
 		{
 			name: 'app-storage',

@@ -7,16 +7,14 @@ export type TProduct = {
 	price: string;
 	alcoholCount: number;
 	soldAlone: boolean;
-	availability: 'AVAILABLE' | 'UNAVAILABLE';
+	availability: string;
 	providerAvailability: number | null;
-	category: TCategory;
+	category: {
+		uuid: string;
+		name: string;
+		sortPosition: number;
+	};
 	barcode: string;
-};
-
-export type TCategory = {
-	uuid: string;
-	name: string;
-	sortPosition: number;
 };
 
 export type TStore = {

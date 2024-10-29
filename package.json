@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "biome check ./src",
     "format": "biome check --write ./src",
-    "test": "jest",
-    "test:watch": "jest --watchAll"
+    "test": "jest --transformIgnorePatterns \"node_modules/(?!@toolz/allow)/\" --env=jsdom"
   },
   "dependencies": {
     "@biomejs/biome": "^1.9.4",
